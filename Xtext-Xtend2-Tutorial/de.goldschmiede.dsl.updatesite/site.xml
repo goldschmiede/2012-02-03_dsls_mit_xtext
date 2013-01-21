@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/de.goldschmiede.dsl_1.0.0.201204111823.jar" id="de.goldschmiede.dsl" version="1.0.0.201204111823">
+      <category name="Goldschmiede"/>
+   </feature>
+   <category-def name="Goldschmiede" label="Goldschmiede"/>
+</site>

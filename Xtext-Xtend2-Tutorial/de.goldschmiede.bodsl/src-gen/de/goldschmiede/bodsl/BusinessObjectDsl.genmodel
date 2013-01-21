@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.goldschmiede.bodsl/src-gen"
+    editDirectory="/de.goldschmiede.bodsl.edit/src" editorDirectory="/de.goldschmiede.bodsl.editor/src"
+    modelPluginID="de.goldschmiede.bodsl" forceOverwrite="true" modelName="BusinessObjectDsl"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="de.goldschmiede.bodsl.edit"
+    editorPluginID="de.goldschmiede.bodsl.editor">
+  <genPackages prefix="BusinessObjectDsl" basePackage="de.goldschmiede.bodsl" disposableProviderFactory="true"
+      ecorePackage="BusinessObjectDsl.ecore#/">
+    <genClasses ecoreClass="BusinessObjectDsl.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BusinessObjectDsl.ecore#//Model/types"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BusinessObjectDsl.ecore#//Model/package"/>
+    </genClasses>
+    <genClasses ecoreClass="BusinessObjectDsl.ecore#//Package">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BusinessObjectDsl.ecore#//Package/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BusinessObjectDsl.ecore#//Package/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BusinessObjectDsl.ecore#//Package/type"/>
+    </genClasses>
+    <genClasses ecoreClass="BusinessObjectDsl.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BusinessObjectDsl.ecore#//Import/importedNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="BusinessObjectDsl.ecore#//BusinessObject">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BusinessObjectDsl.ecore#//BusinessObject/attributes"/>
+    </genClasses>
+    <genClasses ecoreClass="BusinessObjectDsl.ecore#//Enumeration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BusinessObjectDsl.ecore#//Enumeration/literals"/>
+    </genClasses>
+    <genClasses ecoreClass="BusinessObjectDsl.ecore#//EnumLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BusinessObjectDsl.ecore#//EnumLiteral/name"/>
+    </genClasses>
+    <genClasses ecoreClass="BusinessObjectDsl.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BusinessObjectDsl.ecore#//Attribute/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BusinessObjectDsl.ecore#//Attribute/type"/>
+    </genClasses>
+    <genClasses ecoreClass="BusinessObjectDsl.ecore#//Type">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BusinessObjectDsl.ecore#//Type/name"/>
+    </genClasses>
+    <genClasses ecoreClass="BusinessObjectDsl.ecore#//SimpleType"/>
+  </genPackages>
+</genmodel:GenModel>

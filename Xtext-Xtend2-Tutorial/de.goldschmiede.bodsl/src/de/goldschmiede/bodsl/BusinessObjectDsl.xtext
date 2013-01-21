@@ -1,0 +1,60 @@
+grammar de.goldschmiede.bodsl.BusinessObjectDsl with org.eclipse.xtext.common.Terminals
+
+generate businessObjectDsl "http://www.goldschmiede.de/bodsl/BusinessObjectDsl"
+
+Model:
+	types+=SimpleType+ | package=Package;
+
+Package:
+	'package' name=QualifiedName
+	imports+=Import*
+	type = Type
+	;
+
+/*
+ * Importe verwenden die Konvention, dass ein Modellobjekt mit dem Attribut "importedNamespace" einen zu
+ * importierenden Namespace deklariert. Zum Auflösen der Importe wird ein ScopeProvider verwendet, der den Scope
+ * des Linkers bei der Suche nach passenden Elementen, die eine Referenz erfüllen, entsprechend erweitert.
+ * Damit das funktioniert, muss im Script GeneratoBusinessObjectDsl.mwe2 das Fragment <br/><br/>
+ * 
+ * 			<code>fragment = scoping.ImportNamespacesScopingFragment {}</code>
+ * 
+ * <br/><br/>
+ * definiert sein. Die ParserRule muss nicht zwingend "Import" heißen. S.a. Scoping in der Xtext-Hilfe.
+ */	
+Import:
+	'import' importedNamespace=QualifiedNameWithWildcards
+;
+	
+BusinessObject:
+	'businessObject' name=ID '{'
+		attributes += Attribute*
+	'}'
+;
+
+Enumeration:
+	'enum' name=ID '{'
+		literals += EnumLiteral+	
+	'}'
+;
+
+
+EnumLiteral:
+	name = ID
+;
+
+Attribute: name=ID ':' type=[Type|QualifiedName];
+
+/* Eine Vererbungshierarchie vom Metamodellobjekten. <code>Type</code> ist der Basistyp. */
+Type: BusinessObject | Enumeration | SimpleType;
+
+SimpleType: 'type' name=ID;
+	
+
+QualifiedName:
+	ID('.'ID)*
+;
+
+QualifiedNameWithWildcards:
+	QualifiedName '.*'?
+;

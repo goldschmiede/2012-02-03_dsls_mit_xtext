@@ -1,0 +1,43 @@
+/* 
+ * Alternativ könnten wir Xbase als Basissprache nutzen. Dann könnten auch 
+ * Xbase-Ausdrücke in der DSL verwendet werden. ContentAssist muss dafür aber überschrieben werden, 
+ * Xbase einige Schlüsselwörter definiert, die ebenfalls je nach Kontext von der Map DSL selbst überschrieben 
+ * werden, z.B: <code>{}</code> oder <code>=></code> <br/><br/>
+ * 
+ * <code>grammar de.goldschmiede.mapdsl.MapDsl with org.eclipse.xtext.xbase.Xbase</code>
+ */
+grammar de.goldschmiede.mapdsl.MapDsl with org.eclipse.xtext.common.Terminals
+
+generate mapDsl "http://www.goldschmiede.de/mapdsl/MapDsl"
+
+import "http://www.goldschmiede.de/bodsl/BusinessObjectDsl" as bodsl
+
+Model:
+	imports+=Import*
+	maps+=Mapping*;
+	
+Mapping:
+	'map BO' sourceType=[bodsl::BusinessObject|QualifiedName] 'to' targetType=[bodsl::BusinessObject|QualifiedName] ('with' '{'
+		attributeMap += AttributeMap+
+	'}')?
+	;
+
+// Hier können weitere Map Operationen definiert werden
+AttributeMap: AttributeMoveMap
+;
+
+AttributeMoveMap:
+	sourceAttribute=[bodsl::Attribute|QualifiedName] '=>' targetAttribute=[bodsl::Attribute|QualifiedName]
+;
+
+QualifiedName:
+	ID('.'ID)*
+;
+
+QualifiedNameWithWildcards:
+	QualifiedName '.*'?
+;
+
+Import:
+	'import' importedNamespace=QualifiedNameWithWildcards
+;
